@@ -152,11 +152,8 @@ def i_see_new_course_image(_step):
     img = images[0]
     expected_src = '/c4x/MITx/999/asset/image.jpg'
     # Don't worry about the domain in the URL
-    try:
-        assert img['src'].endswith(expected_src)
-    except AssertionError as e:
-        e.args += ('Was looking for {}'.format(expected_src), 'Found {}'.format(img['src']))
-        raise
+    assert img['src'].endswith(expected_src), "Was looking for {expected}, found {actual}".format(
+        expected=expected_src, actual=img['src'])
 
 
 @step('the image URL should be present in the field')
